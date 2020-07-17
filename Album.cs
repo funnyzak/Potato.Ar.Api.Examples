@@ -20,22 +20,8 @@ namespace Potato.Ar.Api.Examples
             AccountInfo loginAccount = await ArApiProvider.Instance.Account.LoginAsync("13123456789", "123789");
             ArApiProvider.Reset(loginAccount.AuthToken);
 
-
-
-            /****绑定手机号****/
-            await ArApiProvider.Instance.Account.BindPhoneAsync("13212345689", "123789");
-
-            /****我的信息****/
-            AccountInfo accountInfo = await ArApiProvider.Instance.Account.ProfileAsync();
-
-            /****我购买的图录****/
-            List<ArAlbum> buyAlbums = await ArApiProvider.Instance.Account.MyBuyAlbumsAsync(1, 200);
-
-            /****我收藏的图录****/
-            List<ArAlbum> favAlbums = await ArApiProvider.Instance.Account.MyFavAlbumsAsync(1, 200);
-
-            /****退出****/
-            await ArApiProvider.Instance.Account.LogoutAsync();
+            /****图录详情****/
+            var album = await ArApiProvider.Instance.Album.GetAsync("album_num");
         }
 
     }
