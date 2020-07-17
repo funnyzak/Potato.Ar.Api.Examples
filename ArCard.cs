@@ -5,7 +5,7 @@ using Potato.Ar.Api.Examples.Common;
 
 namespace Potato.Ar.Api.Examples
 {
-    public class Album : IExample
+    public class ArCard : IExample
     {
         private ConfigProvider _configProvider;
 
@@ -20,17 +20,11 @@ namespace Potato.Ar.Api.Examples
             AccountInfo loginAccount = await ArApiProvider.Instance.Account.LoginAsync("13123456789", "123789");
             ArApiProvider.Reset(loginAccount.AuthToken);
 
-            /****图录详情****/
-            var album = await ArApiProvider.Instance.Album.GetAsync("album_num");
+            /****卡片详情****/
+            var arCard = await ArApiProvider.Instance.ArCard.GetAsync("card_num");
 
-            /****图录列表****/
-            var albums = await ArApiProvider.Instance.Album.ListAsync(true, "id", 1, 1000);
-
-            /****收藏图录****/
-            await ArApiProvider.Instance.Album.FavAsync("album_num");
-
-            /****激活图录****/
-            await ArApiProvider.Instance.Album.ActiveAsync("album_num", "code_num");
+            /****卡片扫描记录****/
+            var scanCards = await ArApiProvider.Instance.ArCard.ScanHistoryAsync(1, 100);
         }
 
     }
